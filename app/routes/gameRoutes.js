@@ -3,7 +3,7 @@ const express = require('express')
 // Passport docs: http://www.passportjs.org/docs/
 const passport = require('passport')
 
-// pull in Mongoose model for examples
+// pull in Mongoose model for games
 const Game = require('../models/game')
 
 // this is a collection of methods that help us detect situations when we need
@@ -60,7 +60,7 @@ router.get('/games/:id', (req, res, next) => {
 // CREATE
 router.post('/games', requireToken, (req, res, next) => {
 	// the requireToken middleware, gives us access to req.user
-	// set owner of new example to be current user
+	// set owner of new game to be current user
 	req.body.game.owner = req.user.id
 
 	Game.create(req.body.game)
