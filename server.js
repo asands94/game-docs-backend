@@ -2,6 +2,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+require('dotenv').config()
 
 // require route files
 const gameRoutes = require('./app/routes/gameRoutes')
@@ -36,12 +37,13 @@ mongoose.connect(db, {
 const app = express()
 
 // set CORS headers on response from this API using the `cors` NPM package
-// `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
+// `CLIENT_ORIGIN` is an environment variable that will be set on netlify
 app.use(
 	cors({
 		origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}`,
 	})
 )
+
 
 // define port for API to run on
 // adding PORT= to your env file will be necessary for deployment

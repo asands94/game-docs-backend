@@ -1,5 +1,3 @@
-'use strict'
-
 // creating a base name for the mongodb
 const mongooseBaseName = 'gameDocsDatabase'
 
@@ -16,5 +14,6 @@ const localDb = process.env.TESTENV ? database.test : database.development
 // Environment variable MONGODB_URI will be available in
 // flyio production environment otherwise use test or development db
 const currentDb = process.env.MONGODB_URI || localDb
+
 
 module.exports = currentDb

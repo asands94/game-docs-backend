@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+// mongoose schemas set to to strict
+// documents will only accept fields listed in schemas
+mongoose.set('strictQuery', true)
 
 const userSchema = new mongoose.Schema(
 	{
