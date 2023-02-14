@@ -28,23 +28,6 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
-// INDEX
-// requireToken is middleware that protects any route it's a part of.
-router.get('/games', (req, res, next) => {
-	Game.find()
-		.populate('owner')
-    .then((games) => {
-			// `games` will be an array of Mongoose documents
-			// we want to convert each one to a POJO, so we use `.map` to
-			// apply `.toObject` to each one
-			return games.map((game) => game.toObject())
-		})
-		// respond with status 200 and JSON of the games
-		.then((games) => res.status(200).json({ games: games }))
-		// if an error occurs, pass it to the handler
-		.catch(next)
-})
-
 // INDEX --> get the specific users games
 // requireToken is middleware that protects any route it's a part of.
 router.get('/games/mine', requireToken, (req, res, next) => {
