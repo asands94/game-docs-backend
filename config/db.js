@@ -15,5 +15,4 @@ const localDb = process.env.TESTENV ? database.test : database.development
 // flyio production environment otherwise use test or development db
 const currentDb = process.env.MONGODB_URI || localDb
 
-
 module.exports = currentDb
