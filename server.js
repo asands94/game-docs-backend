@@ -44,7 +44,6 @@ app.use(
 	})
 )
 
-
 // define port for API to run on
 // adding PORT= to your env file will be necessary for deployment
 const port = process.env.PORT || serverDevPort
