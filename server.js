@@ -3,6 +3,26 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
+const multer = require('multer')
+const cloudinary = require('cloudinary');
+const storage = multer.diskStorage({
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + file.originalname)
+  }
+})
+const imageFilter = function (req, file, cd) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+    return cb(new Error("Only image files are accepted!"), false)
+  }
+  cb(null, true)
+}
+const upload = multer({ storage: storage, fileFilter: imageFilter });
+
+cloudinary.config({
+cloud_name: 'dujlhg9zp', //ENTER YOUR CLOUDINARY NAME
+api_key: process.env.CLOUDINARY_API_KEY, 
+api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // require route files
 const gameRoutes = require('./app/routes/gameRoutes')

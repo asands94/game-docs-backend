@@ -47,6 +47,46 @@ router.post('/ideas/:gameId', requireToken, removeBlanks, (req, res, next) => {
     .catch(next)
 })
 
+// router.post(
+//   '/ideas/:gameId',
+//   requireToken,
+//   removeBlanks,
+//   upload.single('image'),
+//   (req, res) => {
+//     cloudinary.v2.uploader.upload(req.file.path, function (err, result) {
+//       if (err) {
+//         req.json(err.message)
+//       }
+//       req.body.image = result.secure_url
+//       req.body.imageId = result.public_id
+//       // isolate our idea from the request, and save to variable
+//       const idea = req.body.idea
+//       // isolate and save our games's id for easy reference
+//       const gameId = req.params.gameId
+//       // find the game and push the new idea into the game's array
+//       Game.findById(gameId)
+//     // first step is to use our custom 404 middleware
+//     .then(handle404)
+//     // handle adding idea to game
+//     .then((game) => {
+//       console.log('the game: ', game)
+//       console.log('the idea: ', idea)
+//       // only the owner of the game should be allowed to add an idea to it
+//       requireOwnership(req, game)
+//       // add idea to idea array
+//       game.ideas.push(idea)
+
+//       // save the game
+//       return game.save()
+//     })
+//     // send info after updating the game
+//     .then((game) => res.status(201).json({ game: game }))
+//     // pass errors along to our error handler
+//     .catch(next)
+//     })
+//   }
+// )
+
 // PATCH -> update an idea
 router.patch(
   '/ideas/:gameId/:ideaId',

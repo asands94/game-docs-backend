@@ -9,6 +9,12 @@ mongoose.set('strictQuery', true)
 
 const ideaSchema = new mongoose.Schema(
   {
+    image: {
+      type: String
+    },
+    imageId: {
+      type: String
+    },
     title: {
       type: String,
       required: true,
